@@ -13,7 +13,6 @@ Im Mittelpunkt steht die Erfassung von Gutschriften (Einnahmen) und Abbuchungen 
 Durch die geplante Multi-User-Unterstützung können mehrere Nutzer eigene Konten anlegen und ihre individuellen Finanzen unabhängig voneinander verwalten.
 
 
-
 Use Cases
 
 1\. Benutzerkonto anlegen (Registrierung)
