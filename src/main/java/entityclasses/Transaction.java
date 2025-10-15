@@ -1,4 +1,4 @@
-package entitclasses;
+package entityclasses;
 
 import java.time.LocalDate;
 

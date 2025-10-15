@@ -2,7 +2,7 @@
 
 Webtech Semesterprojekt im dritten Semester
 
-
+Team-Mitglieder: David Kiedacz und Daniel Porath
 
 Beschreibung: 
 
