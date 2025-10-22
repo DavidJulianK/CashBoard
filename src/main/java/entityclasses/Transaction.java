@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Transaction {
     LocalDate date;
-    int amount;
+    double amount;
     String description;
 
     public Transaction(LocalDate date) {
