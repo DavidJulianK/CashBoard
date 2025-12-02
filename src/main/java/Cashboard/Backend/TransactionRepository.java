@@ -1,4 +1,4 @@
-package com.example.demo;
+package Cashboard.Backend;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
