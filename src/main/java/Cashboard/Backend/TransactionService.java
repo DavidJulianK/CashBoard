@@ -12,17 +12,13 @@ public class TransactionService {
     @Autowired
     TransactionRepository repo;
 
-    public Transaction save(Transaction transaction) {
+    public Transaction save(Transaction transaction, String userId) {
+        transaction.setUserId(userId);
         return repo.save(transaction);
     }
 
-    public List<Transaction> getAllTransactions() {
-        Iterable<Transaction> iterator = repo.findAll();
-        List<Transaction> transactions = new ArrayList<Transaction>();
-        for (Transaction t : iterator) {
-            transactions.add(t);
-        }
-        return transactions;
+    public List<Transaction> getAllTransactionsForUser(String userId) {
+        return repo.findByUserId(userId);
     }
 
 }

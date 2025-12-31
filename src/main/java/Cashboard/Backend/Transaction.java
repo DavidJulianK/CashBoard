@@ -13,6 +13,9 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Column(nullable = false)
+    private String userId;
+
     private LocalDate date;
     private double amount;
     private String description;
@@ -56,6 +59,14 @@ public class Transaction {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Override
