@@ -12,13 +12,29 @@ public class TransactionService {
     @Autowired
     TransactionRepository repo;
 
-    public Transaction save(Transaction transaction, String userId) {
+    public void save(Transaction transaction, String userId) {
         transaction.setUserId(userId);
-        return repo.save(transaction);
+        repo.save(transaction);
     }
 
     public List<Transaction> getAllTransactionsForUser(String userId) {
         return repo.findByUserId(userId);
+    }
+
+    public void deleteTransaction(long id) {
+        repo.deleteById(id);
+    }
+
+    public void editTransaction(long id, Transaction updated) {
+
+        Transaction existing = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+
+        existing.setDescription(updated.getDescription());
+        existing.setAmount(updated.getAmount());
+        existing.setDate(updated.getDate());
+
+        repo.save(existing);
     }
 
 }

@@ -1,16 +1,17 @@
 package Cashboard.Backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import java.util.List;
 
-@CrossOrigin/*(origins = {
+@CrossOrigin(origins = {
         "https://cashboard-frontend-upuk.onrender.com",
         "http://localhost:5173"
-}) */
+})
 @RestController
 public class Controller {
 
@@ -24,8 +25,22 @@ public class Controller {
     }
 
     @PostMapping("/transaction")
-    public Transaction createTransaction(@RequestBody Transaction transaction, @AuthenticationPrincipal Jwt jwt) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createTransaction(@RequestBody Transaction transaction, @AuthenticationPrincipal Jwt jwt) {
         String userId = jwt.getSubject();
-        return service.save(transaction, userId);
+        service.save(transaction, userId);
+    }
+
+
+    @DeleteMapping("/transaction/{id}")
+    public void deleteTransaction(@PathVariable long id, @AuthenticationPrincipal Jwt jwt) {
+        String userId = jwt.getSubject();
+        service.deleteTransaction(id);
+    }
+
+    @PutMapping("/transaction/{id}")
+    public void editTransaction(@PathVariable long id, @RequestBody Transaction transaction, @AuthenticationPrincipal Jwt jwt) {
+        String userId = jwt.getSubject();
+        service.editTransaction(id, transaction);
     }
 }

@@ -11,7 +11,7 @@ public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    long id;
 
     @Column(nullable = false)
     private String userId;
