@@ -26,9 +26,9 @@ public class Controller {
 
     @PostMapping("/transaction")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createTransaction(@RequestBody Transaction transaction, @AuthenticationPrincipal Jwt jwt) {
+    public void createTransaction(@RequestBody TransactionRequest request, @AuthenticationPrincipal Jwt jwt) {
         String userId = jwt.getSubject();
-        service.save(transaction, userId);
+        service.save(request, userId);
     }
 
 
