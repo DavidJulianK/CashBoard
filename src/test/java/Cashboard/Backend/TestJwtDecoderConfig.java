@@ -1,0 +1,26 @@
+package Cashboard.Backend;
+
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+
+import java.time.Instant;
+import java.util.Map;
+
+@TestConfiguration
+public class TestJwtDecoderConfig {
+
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        // Minimaler Decoder: akzeptiert jedes Token und liefert ein Dummy-JWT.
+        return token -> Jwt.withTokenValue(token)
+                .header("alg", "none")
+                .claim("sub", "test-user")
+                .claim("scope", "read write")
+                .claims(c -> c.putAll(Map.of("preferred_username", "test-user")))
+                .issuedAt(Instant.now())
+                .expiresAt(Instant.now().plusSeconds(3600))
+                .build();
+    }
+}
